@@ -2,7 +2,7 @@ import React from 'react';
 
 const person = props => {
   return (
-    <div className="Person" onClick={props.click}>
+    <div className="Person" onClickCapture={props.click}>
       <p>
         I'm {props.name} and I am {props.age} years old!
       </p>
