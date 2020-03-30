@@ -5,10 +5,9 @@
     "es6": true
   },
   "extends": [
-    "eslint:recommended",
-    "plugin:prettier/recommended",
     "plugin:react/recommended",
-    "airbnb"
+    "eslint:recommended",
+    "plugin:prettier/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -24,16 +23,12 @@
   "plugins": ["react", "jsx-a11y", "import", "prettier"],
   "rules": {
     "no-undef": "warn",
-    "no-console": "warn",
-    "no-const-assign": "warn",
+    "no-console": "off",
+    "no-const-assign": "error",
+    "no-unused-vars": "error",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "max-classes-per-file": 1,
-    "no-useless-catch": "on",
-    "no-async-promise-executor": "on",
-    "no-misleading-character-class": "off",
-    "implicit-arrow-linebreak": "off",
-    "prefer-object-spread": "on",
-    "semi": ["error", "always"],
-    "quotes": ["single", { "allowTemplateLiterals": true }]
+    "no-misleading-character-class": 0,
+    "implicit-arrow-linebreak": 0,
+    "semi": ["error", "always"]
   }
 }
