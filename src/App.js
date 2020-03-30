@@ -35,17 +35,15 @@ class App extends Component {
   };
 
   deleteLetterHandler = index => {
-    const text = { ...this.state.text };
+    const text = this.state.text;
     const textArr = text.split('');
     textArr.splice(index, 1);
     const newText = textArr.join('');
-    newText = 'asdf';
 
     this.setState({ text: newText });
   };
 
   nameChangedHandler = (event, id) => {
-    console.log('event', event);
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
     });
@@ -62,14 +60,9 @@ class App extends Component {
     this.setState({ persons: persons });
   };
 
-  onTextChange = event => {
-    this.setState({
-      text: event.target.value,
-    });
-  };
-
   render() {
     const { showPersons, persons, text } = this.state;
+
     let data = null;
     const style = {
       backgroundColor: 'white',
@@ -89,8 +82,9 @@ class App extends Component {
                 name={person.name}
                 age={person.age}
                 click={() => this.deletePersonHandler(index)}
-                changed={event => this.nameChangedHandler(event, person.id)}
-              ></Person>
+                changed={event =>
+                  this.nameChangedHandler(event, person.id)
+                }></Person>
             );
           })}
         </div>
@@ -101,22 +95,6 @@ class App extends Component {
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
-
-        <input
-          type="text"
-          value={text}
-          onChange={event => this.onTextChange(event)}
-        />
-        <div>
-          {text.split('').map((letter, index) => {
-            return (
-              <Char
-                letter={letter}
-                click={() => this.deleteLetterHandler(index)}
-              ></Char>
-            );
-          })}
-        </div>
 
         <button style={style} onClick={this.togglePersonsHandler}>
           Toggle persons
