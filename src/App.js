@@ -38,7 +38,8 @@ class App extends Component {
     const text = { ...this.state.text };
     const textArr = text.split('');
     textArr.splice(index, 1);
-    newText = textArr.join('');
+    const newText = textArr.join('');
+    newText = 'asdf';
 
     this.setState({ text: newText });
   };
