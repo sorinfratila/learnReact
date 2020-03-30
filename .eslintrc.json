@@ -1,20 +1,35 @@
 {
   "env": {
     "browser": true,
-    "commonjs": true,
     "es6": true
   },
-  "extends": ["airbnb-base", "plugin:prettier/recommended"],
-  "plugins": ["prettier"],
+  "extends": [
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "airbnb"
+  ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
-  "parser": "babel-eslint",
   "parserOptions": {
-    "ecmaVersion": 2018
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2019,
+    "sourceType": "module"
   },
+  "plugins": ["react", "jsx-a11y", "import"],
   "rules": {
-    "prettier/prettier": ["error"]
+    "no-console": "warn",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "max-classes-per-file": "on",
+    "no-useless-catch": "on",
+    "no-async-promise-executor": "on",
+    "no-misleading-character-class": "off",
+    "implicit-arrow-linebreak": "off",
+    "prefer-object-spread": "on",
+    "semi": ["error", "always"],
+    "quotes": ["single", { "allowTemplateLiterals": true }]
   }
 }

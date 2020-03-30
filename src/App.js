@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import './Person/Person.css';
 import Person from './Person/Person';
+import Char from './Char/Char';
 
 class App extends Component {
   state = {
@@ -12,6 +13,7 @@ class App extends Component {
     ],
     otherState: 'some other value',
     showPersons: false,
+    text: 'Aa',
   };
 
   togglePersonsHandler = () => {
@@ -23,26 +25,25 @@ class App extends Component {
   };
 
   deletePersonHandler = personIndex => {
-    // const persons = this.state.persons.slice();
-    const persons = [...this.state.persons];
-    persons.splice(personIndex, 1);
-    this.setState({ persons: persons });
+    this.setState(prevState => {
+      const persons = [...prevState.persons];
+      persons.splice(personIndex, 1);
+      return {
+        persons,
+      };
+    });
   };
 
-  // deletePersonHandler = (event, personIndex) => {
-  //   event.stopPropagation();
-  //   this.setState(prevState => {
-  //     const persons = [...prevState.persons];
-  //     persons.splice(personIndex, 1);
-  //     return {
-  //       persons,
-  //     };
-  //   });
-  // };
+  deleteLetterHandler = index => {
+    const text = { ...this.state.text };
+    const textArr = text.split('');
+    textArr.splice(index, 1);
+    newText = textArr.join('');
+
+    this.setState({ text: newText });
+  };
 
   nameChangedHandler = (event, id) => {
-    event.stopPropagation();
-    event.preventDefault();
     console.log('event', event);
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
@@ -52,8 +53,6 @@ class App extends Component {
       ...this.state.persons[personIndex],
     };
 
-    // const person = Object.assign({}, this.state.persons[personIndex]);
-
     person.name = event.target.value;
 
     const persons = [...this.state.persons];
@@ -62,8 +61,14 @@ class App extends Component {
     this.setState({ persons: persons });
   };
 
+  onTextChange = event => {
+    this.setState({
+      text: event.target.value,
+    });
+  };
+
   render() {
-    const { showPersons, persons } = this.state;
+    const { showPersons, persons, text } = this.state;
     let data = null;
     const style = {
       backgroundColor: 'white',
@@ -95,6 +100,23 @@ class App extends Component {
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
+
+        <input
+          type="text"
+          value={text}
+          onChange={event => this.onTextChange(event)}
+        />
+        <div>
+          {text.split('').map((letter, index) => {
+            return (
+              <Char
+                letter={letter}
+                click={() => this.deleteLetterHandler(index)}
+              ></Char>
+            );
+          })}
+        </div>
+
         <button style={style} onClick={this.togglePersonsHandler}>
           Toggle persons
         </button>
