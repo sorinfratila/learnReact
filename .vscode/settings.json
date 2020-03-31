@@ -1,8 +1,18 @@
 {
-  "editor.fontSize": 16,
-  "editor.fontFamily": "'Inconsolata'",
-  "editor.tabSize": 2,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "eslint.alwaysShowStatus": true
+  "editor.fontSize": 14,
+  "editor.tabSize": 2,
+  "editor.fontFamily": "'Fira Code'",
+  "editor.fontLigatures": true,
+  "editor.fontWeight": "400", // Regular
+  "[markdown]": {
+    "editor.formatOnSave": true,
+    "editor.renderWhitespace": "all",
+    "editor.acceptSuggestionOnEnter": "on"
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+  }
 }
