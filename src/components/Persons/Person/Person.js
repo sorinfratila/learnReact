@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classes from './Person.css';
+import classes from '../Person/Person.css';
 
 const person = props => {
   return (
