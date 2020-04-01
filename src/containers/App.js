@@ -3,7 +3,10 @@ import classes from './App.css';
 import '../components/Persons/Person/Person.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
+import withClass from '../hoc/withClass';
 import pt from 'prop-types';
+import Aux from '../hoc/Aux';
+import AuthContext from '../context/auth-context';
 // import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
@@ -17,7 +20,8 @@ class App extends Component {
       ],
       otherState: 'some other value',
       showPersons: false,
-      text: 'Aa',
+      changeCounter: 0,
+      authenticated: false,
     };
   }
 
@@ -58,15 +62,24 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState({ persons: persons });
+    this.setState(prevState => {
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter + 1,
+      };
+    });
+  };
+
+  loginHandler = () => {
+    this.setState({ authenticated: true });
   };
 
   render() {
-    const { showPersons, persons } = this.state;
-    let data = null;
+    const { showPersons, persons, authenticated } = this.state;
+    let personsData = null;
 
     if (showPersons) {
-      data = (
+      personsData = (
         <div>
           <Persons
             persons={persons}
@@ -77,14 +90,17 @@ class App extends Component {
     }
 
     return (
-      <div className={classes.App}>
-        <Cockpit
-          title={this.props.appTitle}
-          click={this.togglePersonsHandler}
-          showPersons={showPersons}
-          persons={persons}></Cockpit>
-        {data}
-      </div>
+      <Aux>
+        <AuthContext.Provider
+          value={{ authenticated, login: this.loginHandler }}>
+          <Cockpit
+            title={this.props.appTitle}
+            click={this.togglePersonsHandler}
+            showPersons={showPersons}
+            personsLength={persons.length}></Cockpit>
+          {personsData}
+        </AuthContext.Provider>
+      </Aux>
     );
   }
 }
@@ -93,4 +109,4 @@ App.propTypes = {
   appTitle: pt.string,
 };
 
-export default App;
+export default withClass(App, classes.App);
