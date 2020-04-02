@@ -1,6 +1,5 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
   "editor.fontSize": 14,
   "editor.tabSize": 2,
   "editor.fontFamily": "'Fira Code'",
@@ -14,5 +13,7 @@
   "[typescript]": {
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true
-  }
+  },
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true
 }
