@@ -28,6 +28,10 @@
   color: #966909;
 }
 
+.OrderButton:active {
+  box-shadow: none;
+}
+
 .OrderButton:disabled {
   background-color: #c7c6c6;
   cursor: not-allowed;

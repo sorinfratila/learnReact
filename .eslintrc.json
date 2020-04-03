@@ -29,6 +29,7 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "no-misleading-character-class": 0,
     "implicit-arrow-linebreak": 0,
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "space-in-parens": "warn"
   }
 }
