@@ -6,7 +6,10 @@ import Backdrop from '../Backdrop/Backdrop';
 
 class Modal extends Component {
   shouldComponentUpdate(nextProps) {
-    return nextProps.show !== this.props.show;
+    return (
+      nextProps.show !== this.props.show ||
+      nextProps.children !== this.props.children
+    );
   }
 
   render() {
@@ -29,8 +32,8 @@ class Modal extends Component {
 }
 
 Modal.propTypes = {
-  children: PropTypes.element,
-  show: PropTypes.bool,
+  children: PropTypes.any,
+  show: PropTypes.any,
   modalClosed: PropTypes.func,
 };
 

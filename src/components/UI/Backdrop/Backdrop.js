@@ -8,6 +8,6 @@ function backdrop(props) {
   ) : null;
 }
 
-backdrop.propTypes = { show: PropTypes.bool, clicked: PropTypes.func };
+backdrop.propTypes = { show: PropTypes.any, clicked: PropTypes.func };
 
 export default backdrop;
