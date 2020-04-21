@@ -33,7 +33,7 @@ const orderSummary = props => {
 };
 
 orderSummary.propTypes = {
-  ingredients: PropTypes.object,
+  ingredients: PropTypes.any,
   purchaseCanceled: PropTypes.func,
   purchaseContinued: PropTypes.func,
   totalPice: PropTypes.number,
