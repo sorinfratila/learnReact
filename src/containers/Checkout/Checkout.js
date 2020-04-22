@@ -53,7 +53,7 @@ export default class Checkout extends Component {
           render={props => (
             <ContactData
               ingredients={this.state.ingredients}
-              price={this.state.price}
+              price={Number(this.state.price)}
               {...props}></ContactData>
           )}></Route>
       </div>
