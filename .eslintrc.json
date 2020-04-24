@@ -22,10 +22,10 @@
   },
   "plugins": ["react", "jsx-a11y", "import", "prettier"],
   "rules": {
-    "no-undef": "warn",
+    "no-undef": "error",
     "no-console": "off",
     "no-const-assign": "error",
-    "no-unused-vars": "error",
+    "no-unused-vars": "warn",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "no-misleading-character-class": 0,
     "implicit-arrow-linebreak": 0,
