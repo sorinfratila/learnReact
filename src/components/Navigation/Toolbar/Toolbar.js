@@ -13,7 +13,7 @@ function toolbar(props) {
         <Logo></Logo>
       </div>
       <nav className={classes.DesktopOnly}>
-        <NavigationItems></NavigationItems>
+        <NavigationItems isAuthenticated={props.isAuth}></NavigationItems>
       </nav>
     </header>
   );
@@ -21,6 +21,7 @@ function toolbar(props) {
 
 toolbar.propTypes = {
   toggleSideDrawer: PropTypes.func,
+  isAuth: PropTypes.bool,
 };
 
 export default toolbar;
