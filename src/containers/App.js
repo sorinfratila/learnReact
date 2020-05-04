@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import pt from 'prop-types';
 
 import Layout from '../hoc/Layout/Layout';
 import BurgerBuilder from './BurgerBuilder/BurgerBuilder';
-import Checkout from './Checkout/Checkout';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
-import Orders from './Orders/Orders';
-import Auth from './Auth/Auth';
 import Logout from './Auth/Logout/Logout';
 import * as actions from '../store/actions/index';
 import { connect } from 'react-redux';
+
+const Checkout = lazy(() => import('./Checkout/Checkout'));
+const Orders = lazy(() => import('./Orders/Orders'));
+const Auth = lazy(() => import('./Auth/Auth'));
 
 class App extends Component {
   componentDidMount() {
@@ -18,22 +19,27 @@ class App extends Component {
 
   render() {
     let routes = (
-      <Switch>
-        <Route path="/auth" component={Auth} />
-        <Route path="/" exact component={BurgerBuilder} />
-        <Redirect to="/" />
-      </Switch>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Switch>
+          <Route path="/auth" component={Auth} />
+          <Route path="/" exact component={BurgerBuilder} />
+          <Redirect to="/" />
+        </Switch>
+      </Suspense>
     );
 
     if (this.props.isAuthenticated) {
       routes = (
-        <Switch>
-          <Route path="/checkout" component={Checkout} />
-          <Route path="/orders" component={Orders} />
-          <Route path="/logout" component={Logout} />
-          <Route path="/" exact component={BurgerBuilder} />
-          <Redirect to="/" />
-        </Switch>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Switch>
+            <Route path="/checkout" component={Checkout} />
+            <Route path="/orders" component={Orders} />
+            <Route path="/logout" component={Logout} />
+            <Route path="/auth" component={Auth} />
+            <Route path="/" exact component={BurgerBuilder} />
+            <Redirect to="/" />
+          </Switch>
+        </Suspense>
       );
     }
 

@@ -8,12 +8,12 @@ const initialState = {
   purchased: false,
 };
 
-const purchaseInit = (state, action) => {
+const purchaseInit = state => {
   return updateObject(state, { purchased: false });
 };
 
-const purchaseBurgerStart = (state, action) => {
-  return updateObject(state, { loading: false });
+const purchaseBurgerStart = state => {
+  return updateObject(state, { loading: true });
 };
 
 const purchaseBurgerSuccess = (state, action) => {
@@ -25,11 +25,11 @@ const purchaseBurgerSuccess = (state, action) => {
   });
 };
 
-const purchaseBurgerFail = (state, action) => {
+const purchaseBurgerFail = state => {
   return updateObject(state, { loading: false });
 };
 
-const fetchOrdersStart = (state, action) => {
+const fetchOrdersStart = state => {
   return updateObject(state, { loading: true });
 };
 
@@ -40,7 +40,7 @@ const fetchOrdersSuccess = (state, action) => {
   });
 };
 
-const fetchOrdersFail = (state, action) => {
+const fetchOrdersFail = state => {
   return updateObject(state, { loading: false });
 };
 

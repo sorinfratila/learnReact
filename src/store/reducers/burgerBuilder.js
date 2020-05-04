@@ -56,7 +56,7 @@ const setIngredients = (state, action) => {
   });
 };
 
-const fetchIngredientsFailed = (state, action) => {
+const fetchIngredientsFailed = state => {
   return updateObject(state, { error: true });
 };
 
