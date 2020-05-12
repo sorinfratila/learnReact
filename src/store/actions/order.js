@@ -23,7 +23,7 @@ export const purchaseBurgerStart = () => {
 
 export const purchaseBurger = (orderData, token) => {
   return {
-    type: actions.PURCHASE_BURGER_INITIATE,
+    type: actions.PURCHASE_BURGER,
     token,
     orderData,
   };
@@ -57,7 +57,7 @@ export const fetchOrdersStart = () => {
 
 export const fetchOrders = (token, userId) => {
   return {
-    type: actions.FETCH_ORDERS_INITIATE,
+    type: actions.FETCH_ORDERS,
     token,
     userId,
   };

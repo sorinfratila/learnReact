@@ -1,12 +1,14 @@
-import { put, delay } from 'redux-saga/effects';
+import { put, delay, call } from 'redux-saga/effects';
 // import { delay } from 'redux-saga';
 import * as actions from '../actions/index';
 import axios from 'axios';
 
 export function* logoutSaga() {
-  yield localStorage.removeItem('token');
-  yield localStorage.removeItem('expirationDate');
-  yield localStorage.removeItem('userId');
+  // the call function from redux-saga helps with testing
+  // it can be easily mocked and does not need to be executed
+  yield call([localStorage, 'removeItem'], 'token');
+  yield call([localStorage, 'removeItem'], 'expirationDate');
+  yield call([localStorage, 'removeItem'], 'userId');
 
   yield put(actions.logoutSucceed());
 }
