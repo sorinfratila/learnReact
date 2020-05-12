@@ -13,6 +13,7 @@ describe('auth reducer', () => {
   });
 
   it('should store the token upon login', () => {
+    // for some reason this does not pass
     expect(
       reducer(
         {
