@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -8,34 +8,25 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
-class Orders extends Component {
-  static propTypes = {
-    onFetchOrders: PropTypes.func,
-    orders: PropTypes.any,
-    loading: PropTypes.bool,
-    token: PropTypes.any,
-    userId: PropTypes.string,
-  };
+const Orders = props => {
+  const { token, userId, onFetchOrders } = props;
+  useEffect(() => {
+    onFetchOrders(token, userId);
+  }, [token, userId, onFetchOrders]);
 
-  componentDidMount() {
-    this.props.onFetchOrders(this.props.token, this.props.userId);
+  let orders = <Spinner></Spinner>;
+  if (!props.loading) {
+    orders = props.orders.map(order => {
+      return (
+        <Order
+          key={order.id}
+          ingredients={order.ingredients}
+          price={order.price}></Order>
+      );
+    });
   }
-
-  render() {
-    let orders = <Spinner></Spinner>;
-    if (!this.props.loading) {
-      orders = this.props.orders.map(order => {
-        return (
-          <Order
-            key={order.id}
-            ingredients={order.ingredients}
-            price={order.price}></Order>
-        );
-      });
-    }
-    return <div>{orders}</div>;
-  }
-}
+  return <div>{orders}</div>;
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -51,6 +42,14 @@ const mapStateToProps = state => {
     token: state.auth.token,
     userId: state.auth.userId,
   };
+};
+
+Orders.propTypes = {
+  onFetchOrders: PropTypes.func,
+  orders: PropTypes.any,
+  loading: PropTypes.bool,
+  token: PropTypes.any,
+  userId: PropTypes.string,
 };
 
 export default connect(

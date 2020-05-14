@@ -20,8 +20,6 @@ const rootReducer = combineReducers({
   auth: authReducer,
 });
 
-console.log(process.env.NODE_ENV);
-
 const sagaMiddleware = createSagaMiddleware();
 
 const composeEnhancers =
